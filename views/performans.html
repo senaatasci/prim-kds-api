@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Performans Özeti | Prim KDS</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 35%, #ffffff 100%);
+    }
+    .page-main { width: 100%; }
+    .page-content {
+      padding: 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .page-hero {
+      background: linear-gradient(135deg, #7fc8ff, #a7ffd6);
+      border-radius: 20px;
+      padding: 24px 26px;
+      margin-bottom: 24px;
+      box-shadow: 0 14px 34px rgba(15,23,42,0.12);
+    }
+    .page-title {
+      font-size: 36px;
+      font-weight: 900;
+      margin: 0 0 6px;
+      color: #0f172a;
+    }
+    .page-subtitle {
+      margin: 0;
+      color: #0f172a;
+      opacity: .8;
+      line-height: 1.4;
+    }
+    .page-meta {
+      margin-top: 6px;
+      color: #0f172a;
+      opacity: .8;
+      font-weight: 700;
+    }
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 16px 0;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+    }
+    .card-header h2 { margin: 4px 0 6px; font-size: 20px; font-weight: 800; }
+    .card-header p { margin: 0 0 12px; color:#64748b; font-size: 13px; }
+    .table-wrap { overflow: auto; border-radius: 14px; }
+    .kds-table { width:100%; border-collapse: separate; border-spacing:0; }
+    .kds-table thead th{
+      background:#0f172a;
+      color:#fff;
+      padding: 12px 12px;
+      font-weight: 800;
+      font-size: 13px;
+      position: sticky; top: 0;
+    }
+    .kds-table tbody td{
+      padding: 12px 12px;
+      border-bottom: 1px solid #eef2f7;
+      font-size: 13px;
+    }
+    .kds-table tbody tr:nth-child(even){ background:#f2fbf5; }
+    .badge{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .badge-star{ background:#efe8ff; color:#6d28d9; }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="/images/gratis.png" class="logo-img" alt="Gratis Logo">
+        <div>Prim KDS</div>
+      </div>
+
+      <nav class="nav">
+            
+            <a href="/ilce_detay" class="nav-link">📊 İlçe Detay Analizleri</a>
+            <a href="/personel_analiz" class="nav-link">👤 Personel Analizi</a>
+            <a href="/performans" class="nav-link active">📈 Performans Özeti</a>
+            <a href="/oneriler" class="nav-link">💡 Öneriler</a>
+            <a href="/harita" class="nav-link">🗺️ Harita Analizi</a>
+            <button class="logout-btn" onclick="window.location.href='/login'">
+            ⏻ Çıkış
+        </button>
+        </nav>
+    </aside>
+
+    <main class="page-main">
+      <div class="page-content">
+
+        <div class="page-hero">
+          <div>
+            <h1 class="page-title">Performans Özeti</h1>
+            <p class="page-subtitle">
+              İlçe ve personel bazında performans, ciro, memnuniyet ve prim dağılımının özeti.
+            </p>
+            <p class="page-meta" id="donemInfo"></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>İlçe Bazlı Performans Tablosu</h2>
+            <p>Bir ilçe satırına tıklayınca alttaki personel tablosu o ilçeye filtrelenir.</p>
+          </div>
+          <div class="table-wrap">
+            <table id="ilceTable" class="kds-table">
+              <thead>
+                <tr>
+                  <th>İlçe</th>
+                  <th>Şube Sayısı</th>
+                  <th>Toplam Personel</th>
+                  <th>Ort. Performans Skoru</th>
+                  <th>Toplam Ciro (Aylık)</th>
+                  <th>Ort. Müşteri Memnuniyeti</th>
+                  <th>Toplam Dağıtılan Prim</th>
+                  <th>Durum</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>Personel Bazlı Performans Tablosu</h2>
+            <p id="personelFilterInfo">Filtre: Tümü</p>
+          </div>
+          <div class="table-wrap">
+            <table id="personelTable" class="kds-table">
+              <thead>
+                <tr>
+                  <th>Ad Soyad</th>
+                  <th>Şube</th>
+                  <th>Rol / Pozisyon</th>
+                  <th>İşe Giriş</th>
+                  <th>Genel Performans (%)</th>
+                  <th>Ciro Gerçekleşme (%)</th>
+                  <th>İade Oranı (%)</th>
+                  <th>Hak Edilen Prim</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <script src="/js/performans.js"></script>
+    </main>
+
+  </div>
+</body>
+</html>

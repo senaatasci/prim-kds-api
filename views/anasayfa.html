@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ana Sayfa | Prim KDS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* ÜST BANNER */
+        .hero-box {
+            background: linear-gradient(135deg, #7fc8ff, #a7ffd6);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .hero-sub {
+            margin-top: 5px;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        /* Büyük sayaç kutuları */
+        .hero-cards {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .hero-card {
+            background: #ffffffaa;
+            backdrop-filter: blur(4px);
+            padding: 22px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .hero-number {
+            font-size: 38px;
+            font-weight: 700;
+            color: #005b96;
+        }
+
+        /* ORTA AÇIKLAMA KUTUSU */
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .features {
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        /* 6'lı kart Alanı */
+        .six-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .six-card {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        /* Nasıl Kullanılır */
+        .how-box {
+            background: #82D47F;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SOL MENÜ -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="/images/gratis.png" class="logo-img" alt="Gratis Logo">
+            <div>Prim KDS</div>
+        </div>
+
+        <nav class="nav">
+            <a href="/anasayfa" class="nav-link active">🏠 Ana Sayfa</a>
+            <a href="/ilce_detay" class="nav-link">📊 İlçe Detay Analizleri</a>
+            <a href="/performans" class="nav-link">📈 Performans Özeti</a>
+            <a href="/oneriler" class="nav-link">💡 Öneriler</a>
+            <a href="/harita" class="nav-link">🗺️ Harita Analizi</a>
+            <button class="logout-btn" onclick="window.location.href='/login'">
+            ⏻ Çıkış
+        </button>
+        </nav>
+
+       
+    </aside>
+
+    <!-- ANA İÇERİK -->
+    <main class="main">
+
+        <!-- ÜST BANNER (ESKİ TASARIM TAMAMEN GERİ GETİRİLDİ) -->
+        <div class="hero-box">
+            <div class="hero-title">Kurumsal Performans ve Prim Yönetim Sistemi</div>
+            <div class="hero-sub">Gratis’in mağazacılık operasyonlarında verimliliği ve çalışan motivasyonunu en üst seviyeye taşımak amacıyla geliştirilen bu Karar Destek Sistemi; şube ve personel performanslarını, kurumsal hedefler ve ağırlıklı başarı metrikleri üzerinden çok boyutlu olarak analiz eder.</div>
+
+            <div class="hero-cards">
+                <div class="hero-card">
+                    <div class="hero-number" id="toplamSube">0</div>
+                    <div>Şube Kapsamı</div>
+                </div>
+                <div class="hero-card">
+                    <div class="hero-number">4</div>
+                    <div>Performans Metrikleri</div>
+                </div>
+                <div class="hero-card">
+                    <div class="hero-number" id="toplamPersonel">0</div>
+                    <div>Personel Analizi</div>
+                </div>
+                <div class="hero-card">
+                    <div class="hero-number" id="gercekKaydi">0</div>
+                    <div>Gerçekleşme Kaydı</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ORTA METİN -->
+        <div class="info-box">
+            <h2>Bu Proje Ne İşe Yarar?</h2>
+            <div class="features">
+               <b> ✓ Hedef/Gerçekleşme Sapma (Varyans) Yönetimi:</b> Kurumsal hedefler ile saha sonuçları arasındaki farkları anlık izleyerek kritik müdahale alanlarını tespit eder. <br>
+                <b>✓ Bütçe Optimize Edilmiş Prim Sistemi:</b> Performans skoruna dayalı, şeffaf, adil ve şirket bütçesini koruyan otomatik prim hak edişleri hesaplar. <br>
+                <b>✓ Şubeler Arası Verimlilik Benchmarking'i:</b> Lokasyonları birbirleriyle kıyaslayarak (benchmarking) en yüksek kârlılık ve operasyonel başarı modellerini ortaya çıkarır. <br>
+                <b>✓ Veriye Dayalı İş Gücü Planlaması:</b> Rol ve KPI bazlı derinlemesine analizlerle personel yetkinliklerini ölçer, eğitim ihtiyacı ve potansiyel liderleri belirler.
+            </div>
+        </div>
+
+        <!-- KULLANIM SENARYOLARI -->
+<div class="info-box">
+    <h2>Kullanım Senaryoları</h2>
+
+    <div class="six-cards">
+        <div class="six-card">
+            <strong>İlçe Bazlı Performans</strong><br>
+            İlçeler arası satış, ciro, kalite ve hedef uyumunun karşılaştırmalı analizi.
+        </div>
+
+        <div class="six-card">
+            <strong>Harita Analizi</strong><br>
+            Harita sayfasında GeoJSON tabanlı İzmir ilçeleri katmanı üzerinde filreleme yaparak tabloyu aynı anda güncelleyebilirsiniz.
+        </div>
+
+        <div class="six-card">
+            <strong>Stratejik Öneriler</strong><br>
+            Öneriler ekranı, veri analizi sonuçlarına göre operasyonel aksiyonları ve büyüme fırsatlarını listeler.
+        </div>
+    </div>
+</div>
+
+<!-- İÇERİKTE NELER VAR -->
+<div class="info-box">
+    <h2>İçerikte Neler Var?</h2>
+
+    <div class="six-cards">
+        <div class="six-card">
+            <strong>Veri Tabanı</strong><br>
+            Personel, şube, hedef, gerçekleşme ve prim tablolarından oluşan güçlü yapı.
+        </div>
+
+        <div class="six-card">
+            <strong>Analitik Modüller</strong><br>
+            Trend analizleri, KPI skorları ve ağırlıklı performans hesaplamaları.
+        </div>
+
+        <div class="six-card">
+            <strong>Karşılaştırma Ekranları</strong><br>
+            İlçe, şube ve personel bazlı performans kıyaslamaları.
+        </div>
+    </div>
+</div>
+
+
+        <!-- Nasıl Kullanılır -->
+        <div class="how-box">
+            <h2>Nasıl Kullanılır?</h2>
+            1. Sol menüden analiz etmek istediğiniz wkranı seçin. <br>
+            2. Filtreler ve harita üzerinden ilgili ilçeyi belirleyin. <br>
+            3. Grafik ve tablolar üzerinden sonuçları inceleyin. <br>
+            4. Çıktıları inceleyerek prim kararlarınızı yönetin.
+        </div>
+
+    </main>
+
+</div>
+
+<script src="/js/anasayfa.js"></script>
+
+</body>
+</html>

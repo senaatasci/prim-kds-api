@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>İlçe Detay Analizi | Prim KDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 35%, #ffffff 100%);
+    }
+    .page-content {
+      padding: 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .page-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .page-title {
+      font-size: 36px;
+      font-weight: 900;
+      margin: 0;
+      color: #0f172a;
+    }
+    .page-subtitle {
+      color: #475569;
+      line-height: 1.5;
+    }
+    .filter-card,
+    .kpi-card,
+    .chart-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+    .filter-card {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
+      backdrop-filter: blur(4px);
+    }
+    .filter-row {
+      display: grid;
+      grid-template-columns: 3fr auto;
+      gap: 16px;
+      align-items: end;
+    }
+    .filter-group label {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .filter-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      font-size: 15px;
+    }
+    .btn-primary {
+      padding: 12px 26px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .kpi-item {
+      padding: 14px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+    .kpi-item:nth-child(1) { background: #eef2ff; border-color: #e0e7ff; }
+    .kpi-item:nth-child(2) { background: #ecfdf5; border-color: #d1fae5; }
+    .kpi-item:nth-child(3) { background: #fff7ed; border-color: #ffedd5; }
+    .kpi-item:nth-child(4) { background: #fef2f2; border-color: #fee2e2; }
+    .kpi-item:nth-child(5) { background: #f0f9ff; border-color: #e0f2fe; }
+    .kpi-item h4 {
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+    }
+    .kpi-item span {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .kpi-desc {
+      margin: 0 0 8px;
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .chart-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #0f172a;
+    }
+    .chart-card p {
+      margin: 0 0 12px;
+      color: #64748b;
+      font-size: 13px;
+    }
+    canvas {
+      width: 100% !important;
+      height: 320px !important;
+    }
+    @media (max-width: 1200px) {
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .chart-grid { grid-template-columns: 1fr; }
+      .filter-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="/images/gratis.png" class="logo-img" alt="Gratis Logo">
+      <div>Prim KDS</div>
+    </div>
+
+    <nav class="nav">
+           
+            <a href="/ilce_detay" class="nav-link ">📊 İlçe Detay Analizleri</a>
+            <a href="/personel_analiz" class="nav-link active">👤 Personel Analizi</a>
+            <a href="/performans" class="nav-link">📈 Performans Özeti</a>
+            <a href="/oneriler" class="nav-link">💡 Öneriler</a>
+            <a href="/harita" class="nav-link">🗺️ Harita Analizi</a>
+            <button class="logout-btn" onclick="window.location.href='/login'">
+            ⏻ Çıkış
+        </button>
+        </nav>
+  </aside>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-title">Personel Analizi</div>
+      <div class="page-subtitle">
+        Seçilen ilçe için hedef, gerçekleşme ve performans skorlarının detaylı analizi
+      </div>
+    </div>
+
+    <div class="filter-card">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label>İlçe Seç</label>
+          <select id="ilceSelect"></select>
+        </div>
+        <button class="btn-primary" id="btnUygula">Uygula</button>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-grid">
+        <div class="kpi-item">
+          <h4>En Yüksek Performanslı Personel</h4>
+          <p class="kpi-desc">Ilcedeki en yuksek bireysel performans skoru</p>
+          <span id="kpiPerformans">-</span>
+        </div>
+        <div class="kpi-item">
+          <h4>Hedefini Aşan Personel Sayısı</h4>
+          <p class="kpi-desc">Gerceklesmesi hedefin uzerinde olan kisi sayisi</p>
+          <span id="kpiPersonel">-</span>
+        </div>
+        <div class="kpi-item">
+          <h4>En İstikrarlı Personel</h4>
+          <p class="kpi-desc">Son 6 ayda performansi en az dalgalanan kisi</p>
+          <span id="kpiHedef">-</span>
+        </div>
+        <div class="kpi-item">
+          <h4>En çok Gelişim Gösteren Personel</h4>
+          <p class="kpi-desc">Ilk ay - son ay skor farki en yuksek kisi</p>
+          <span id="kpiGercek">-</span>
+        </div>
+        <div class="kpi-item">
+          <h4>Hedefe En Yakın Personel</h4>
+          <p class="kpi-desc">Gerceklesme / hedef orani %100'e en yakin olan</p>
+          <span id="kpiOran">-</span>
+        </div>
+      </div>
+    </div>
+
+ 
+      <div class="chart-card">
+        <h3>Personel Performans Karşılaştırması</h3>
+        <p>En yüksekten en düşüğe sıralı personel performansları</p>
+        <canvas id="chartPersonel"></canvas>
+      </div>
+
+   <!-- ===============================
+     PERSONEL BAZINDA HEDEF – GERÇEKLEŞEN
+=============================== -->
+<div class="chart-card">
+  <h3>Personel Bazında Hedef – Gerçekleşen</h3>
+  <p>Son 6 ay toplam veya seçilen ay için hedef – gerçekleşen karşılaştırması</p>
+
+  <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+    <select id="donemSelect"
+            style="max-width:220px; padding:10px; border-radius:10px;">
+      <option value="6ay">Son 6 Ay</option>
+    </select>
+  </div>
+
+  <canvas id="chartHedefGerceklesen"></canvas>
+</div>
+
+<!-- ===============================
+     ALTTA YAN YANA GRAFİKLER
+=============================== -->
+<div class="chart-grid">
+
+  <!-- 🔵 Rol Bazlı Pasta Grafik -->
+  <div class="chart-card">
+    <h3>Rollere Göre Hedef Dağılımı</h3>
+    <p>Toplam hedefin rollere göre yüzdesel dağılımı</p>
+    <canvas id="chartRolHedef"></canvas>
+  </div>
+
+ <div class="chart-card">
+  <h3>Personel Performans Trendi</h3>
+  <p>Seçilen personelin aylara göre performans değişimi</p>
+
+  <!-- 👤 PERSONEL SEÇ -->
+  <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+    <select id="personelSelect"
+            style="max-width:260px; padding:10px; border-radius:10px;">
+      <option value="">Personel Seç</option>
+    </select>
+  </div>
+
+  <canvas id="chartPersonelTrend"></canvas>
+</div>
+
+
+</div>
+
+</main>
+</div>
+
+<script src="/js/personel_analiz.js"></script>
+</body>
+</html>

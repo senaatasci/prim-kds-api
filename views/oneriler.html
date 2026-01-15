@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Öneriler | Prim KDS</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body { background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 35%, #ffffff 100%); }
+    .page-main { width: 100%; display: flex; justify-content: center; }
+    .page-content {
+      padding: 28px 32px;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .title-box {
+      background: linear-gradient(135deg, #7fc8ff, #a7ffd6);
+      border-radius: 20px;
+      padding: 22px 26px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    }
+    .title-box-title { font-size: 34px; font-weight: 900; color: #0f172a; margin: 0 0 6px; }
+    .title-box-sub { font-size: 15px; color: #0f172a; margin: 0; opacity: .9; }
+    .title-box-desc { margin-top: 6px; font-size: 14px; color: #0f172a; opacity: .85; }
+
+    .section {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .section-title { font-size: 18px; font-weight: 800; margin: 0; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 1200px) { .cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } }
+    @media (max-width: 768px) { .cards { grid-template-columns: 1fr; } .page-content { padding: 20px; width: calc(100% - 20px); } }
+
+    .cardx {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 10px 22px rgba(15,23,42,0.06);
+    }
+    .cardx h4 { font-size: 15px; font-weight: 800; margin: 6px 0 4px; }
+    .muted { font-size: 13px; color: #6b7280; line-height: 1.4; }
+
+    .pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+    .pill.blue { background: rgba(37, 99, 235, 0.12); color: #1d4ed8; }
+    .pill.orange { background: rgba(249, 115, 22, 0.15); color: #c2410c; }
+    .pill.red { background: rgba(239, 68, 68, 0.15); color: #b91c1c; }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+    .kv { background: #f8fafc; border-radius: 12px; padding: 10px; }
+    .kv .k { font-size: 12px; color: #64748b; }
+    .kv .v { font-size: 14px; font-weight: 800; }
+
+    .action { margin-top: auto; padding-top: 12px; }
+    .btnx {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 11px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      background: #0f172a;
+      color: #ffffff;
+      transition: 0.2s;
+    }
+    .btnx:hover { background: #1f2937; }
+    .section-badge {
+      background: #111827;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .empty {
+      padding: 14px;
+      border-radius: 12px;
+      background: #f8fafc;
+      color: #475569;
+      font-weight: 700;
+      text-align: center;
+      border: 1px dashed #cbd5e1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="/images/gratis.png" class="logo-img" alt="Gratis Logo">
+            <div>Prim KDS</div>
+        </div>
+
+        <nav class="nav">
+            
+            <a href="/ilce_detay" class="nav-link">📊 İlçe Detay Analizleri</a>
+            <a href="/personel_analiz" class="nav-link">👤 Personel Analizi</a>
+            <a href="/performans" class="nav-link">📈 Performans Özeti</a>
+            <a href="/oneriler" class="nav-link active">💡 Öneriler</a>
+            <a href="/harita" class="nav-link">🗺️ Harita Analizi</a>
+            <button class="logout-btn" onclick="window.location.href='/login'">
+            ⏻ Çıkış
+        </button>
+        </nav>
+
+        
+    </aside>
+
+    <main class="page-main">
+      <div class="page-content">
+        <div class="title-box">
+  <div class="title-box-title">Yönetimsel Öneri Sistemi</div>
+  <div class="title-box-sub" id="donemLine">Analiz Dönemi: 2024-06</div>
+  <div class="title-box-desc">
+    Verilere dayalı olarak otomatik üretilen stratejik öneriler.
+  </div>
+</div>
+
+
+
+        <!-- Prim Önerilenler -->
+        <section class="section">
+          <div class="section-head">
+            <h3 class="section-title">Prim Önerilen Personeller</h3>
+            <span class="section-badge" id="badgePrim">0 kayıt</span>
+          </div>
+          <div class="cards" id="primCards"></div>
+          <div class="empty" id="primEmpty" style="display:none;">Bu kriterde kayıt bulunamadı.</div>
+        </section>
+
+        <!-- Eğitim / Gelişim -->
+        <section class="section">
+          <div class="section-head">
+            <h3 class="section-title">Eğitim / Gelişim Önerilenler</h3>
+            <span class="section-badge" id="badgeEgitim">0 kayıt</span>
+          </div>
+          <div class="cards" id="egitimCards"></div>
+          <div class="empty" id="egitimEmpty" style="display:none;">Bu kriterde kayıt bulunamadı.</div>
+        </section>
+
+        <!-- Kritik Risk -->
+        <section class="section">
+          <div class="section-head">
+            <h3 class="section-title">Kritik Performans Uyarıları</h3>
+            <span class="section-badge" id="badgeRisk">0 kayıt</span>
+          </div>
+          <div class="cards" id="riskCards"></div>
+          <div class="empty" id="riskEmpty" style="display:none;">Bu kriterde kayıt bulunamadı.</div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/oneriler.js"></script>
+</body>
+</html>

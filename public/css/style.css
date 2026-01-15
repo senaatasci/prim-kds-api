@@ -1,0 +1,430 @@
+/* Genel reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+    background: #f3f4fb;
+    color: #111827;
+}
+
+/* Ana layout */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SOL SİDEBAR */
+.sidebar {
+    width: 240px;
+    background: #111827;          /* koyu lacivert */
+    color: #e5e7eb;
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-logo {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-logo span {
+    font-size: 22px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.nav-link {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #e5e7eb;
+    font-size: 14px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-link:hover {
+    background: #1f2937;
+}
+
+.nav-link.active {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+/* Çıkış butonu */
+.logout-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: #ef4444;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+.logout-btn:active {
+    transform: translateY(1px);
+}
+
+/* ANA İÇERİK */
+.main {
+    flex: 1;
+    padding: 24px 32px;
+}
+
+/* Sayfa başlığı */
+.page-header-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.page-header-sub {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* Kart satırı */
+.cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* Metrik kartları */
+.metric-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px 18px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 110px;
+}
+
+.metric-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.metric-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: #059669; /* yeşil */
+}
+
+/* Küçük ekran uyumu */
+@media (max-width: 1024px) {
+    .cards-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+.logo-img {
+    width: 65px;      /* ← burayı artırdım (orijinal 40 px civarıydı) */
+    height: auto;
+    margin-right: 10px;
+}
+.top-filter-bar {
+    background: #fff;
+    padding: 18px 22px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    display: flex;
+    gap: 22px;
+    margin-bottom: 26px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.kpi-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 26px rgba(148, 163, 184, 0.25);
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-bottom: 28px;
+}
+
+.chart-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 26px rgba(148,163,184,0.18);
+}
+
+.insight-box {
+    background: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(15,23,42,0.10);
+}
+
+/* ===== Performans sayfası ek stiller ===== */
+.page-hero{
+  background: linear-gradient(135deg, #7fc8ff, #b9f6d0);
+  border-radius: 18px;
+  padding: 22px 22px;
+  margin: 18px 0 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.page-title{ font-size: 44px; font-weight: 900; margin: 0 0 6px; }
+.page-subtitle{ margin: 0; color:#334155; opacity:.85; font-size: 16px; }
+.page-meta{ margin-top: 8px; color:#0f172a; opacity:.7; font-size: 13px; }
+
+.card{
+  background:#fff;
+  border-radius: 18px;
+  padding: 16px 16px 10px;
+  margin: 16px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.card-header h2{ margin: 4px 0 6px; font-size: 18px; font-weight: 800; }
+.card-header p{ margin: 0 0 12px; color:#64748b; font-size: 13px; }
+
+.table-wrap{ overflow:auto; border-radius: 14px; }
+.kds-table{ width:100%; border-collapse: separate; border-spacing:0; }
+.kds-table thead th{
+  background:#1f2f41;
+  color:#fff;
+  padding: 12px 12px;
+  font-weight: 800;
+  font-size: 13px;
+  position: sticky; top: 0;
+}
+.kds-table tbody td{
+  padding: 12px 12px;
+  border-bottom: 1px solid #eef2f7;
+  font-size: 13px;
+}
+.kds-table tbody tr:nth-child(even){ background:#e9f7ee; }
+.clickable-row{ cursor:pointer; }
+.row-selected{ outline: 2px solid rgba(59,130,246,0.6); }
+
+.badge{
+  display:inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 12px;
+}
+.badge-success{ background:#e8f8ee; color:#067647; }
+.badge-danger{ background:#ffe4e6; color:#b42318; }
+.badge-star{ background:#efe8ff; color:#6d28d9; }
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #5B2D8B, #2B124C);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI", sans-serif;
+}
+
+
+.login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    background: #ffffff;
+    width: 380px;
+    padding: 32px 28px;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.login-header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.login-header p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #64748b;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #334155;
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.btn-login {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+}
+
+.login-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+}
+.login-logo {
+    width: 110px;
+    margin-bottom: 14px;
+}
+
+/* === ÖNERİ KARTLARI VURGULAR === */
+
+.card-prim {
+  border-left: 6px solid #22c55e;
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.card-egitim {
+  border-left: 6px solid #f59e0b;
+  background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
+}
+
+.card-risk {
+  border-left: 6px solid #ef4444;
+  background: linear-gradient(180deg, #ffffff 0%, #fef2f2 100%);
+}
+
+.cardx {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cardx:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.section-badge {
+  background: #111827;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+/* === BAŞLIK KUTUSU (SADE) === */
+.title-box {
+  background: linear-gradient(135deg, #7dd3fc, #a7f3d0);
+  border-radius: 18px;
+  padding: 22px 26px;
+  margin-bottom: 26px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+.title-box-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.title-box-sub {
+  font-size: 14px;
+  color: #0f172a;
+  opacity: 0.8;
+}
+.title-box-desc {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #0f172a;
+  opacity: 0.85;
+}
+
+
